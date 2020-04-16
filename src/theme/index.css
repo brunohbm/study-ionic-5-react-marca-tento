@@ -1,0 +1,67 @@
+
+body {    
+    --default-height-padding: 4.5566vh;
+    --center-width-padding: 8.1333vw;
+    --border-width-padding: 5.3333vw;
+    --scoreboard-space: 1.84vw;
+    --default-border-radius: 6px; 
+    --default-blur: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
+}
+
+.title {
+    padding: var(--default-height-padding) var(--border-width-padding) calc(var(--default-height-padding) / 2) var(--border-width-padding);
+    font-family: 'Maitree';  
+    font-size: 33px;
+    font-weight: 800;
+}
+
+.scoreboards {
+    padding: calc(var(--default-height-padding) / 2) var(--border-width-padding);
+    font-family: 'Maitree';  
+}
+
+.scoreboards .score-name {
+    border-radius: var(--default-border-radius);
+    background-color: var(--ion-background-color);
+    box-shadow: var(--default-blur);
+    font-size: 17px;
+    font-weight: 800;
+    line-height: 29px;
+}
+
+.scoreboards .main-score {
+    font-size: 80px;
+    font-weight: 200;
+    color: var(--ion-background-color);
+}
+
+.scoreboards .victories {
+    font-size: 17px;
+    font-weight: 300;
+    color: var(--ion-background-color);
+}
+
+.scoreboards > ion-col:first-child {
+    padding-right: calc(var(--center-width-padding) / 2);
+}
+
+.scoreboards > ion-col:last-child {
+    padding-left: calc(var(--center-width-padding) / 2);
+}
+
+.blue-wrapper {
+    background-color: #658BC9;
+    border-radius: var(--default-border-radius);
+    padding: var(--scoreboard-space);
+}
+
+.red-wrapper {
+    background-color: #C96865;
+    border-radius: var(--default-border-radius);
+    padding: var(--scoreboard-space);
+}
+
+ion-col {
+    text-align: center;
+    padding: 0px;
+}
