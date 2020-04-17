@@ -1,12 +1,18 @@
 import { 
-  IonPage, 
-  IonContent, 
-  IonGrid,
   IonRow,
   IonCol,
+  IonPage, 
+  IonItem,
+  IonList,
+  IonButton,
+  IonContent, 
 } from '@ionic/react';
 import React from 'react';
-import './Home.css';
+
+interface historicItem {
+  color: string;
+  text: string;
+}
 
 const ScoreBoard: React.FC = () => (
   <IonCol>
@@ -27,11 +33,61 @@ const ScoreBoard: React.FC = () => (
     </IonRow>
     <IonRow>
       <IonCol className="buttons">
-        -1 +1 +3
+        <IonRow>
+          <IonCol>
+            <IonButton expand="block" color="light">
+              <span className="button-text">
+                -1
+              </span>
+            </IonButton>
+          </IonCol>
+          <IonCol>
+            <IonButton expand="block" color="light">
+              <span className="button-text">
+                +1
+              </span>
+            </IonButton>
+          </IonCol>
+          <IonCol>
+            <IonButton expand="block" color="light">
+              <span className="button-text">
+                +3
+              </span>
+            </IonButton>
+          </IonCol>
+        </IonRow>
       </IonCol>
     </IonRow>
   </IonCol>  
 )
+
+const Historic: React.FunctionComponent<{
+  items: Array<historicItem>;
+}> = props => (
+    <IonCol className="historic-wrapper"> 
+      <IonRow className="header">
+        <IonCol className="historic-title">
+        Historic
+        </IonCol>
+      </IonRow>
+      <IonRow className="body">
+      {props.items.length ? (
+        <IonCol>
+          <IonList>
+            {
+              props.items.map((item: historicItem) => (
+                <div className={`${item.color}-item`}>
+                  {item.text}
+                </div>
+              ))
+            }
+          </IonList>
+        </IonCol>
+        ) : null
+      }
+      </IonRow>
+    </IonCol>
+  );
 
 const Home: React.FC = () => {
   return (
@@ -53,7 +109,61 @@ const Home: React.FC = () => {
           </IonCol>
         </IonRow>
         <IonRow>
-          <IonCol>ion-col</IonCol>
+          <Historic items={[
+            {
+              text: 'Player number 1 win +3 points',
+              color: 'red',
+            },
+            {
+              text: 'Player number 1 win +3 points',
+              color: 'blue',
+            },
+            {
+              text: 'Player number 1 win +3 points',
+              color: 'red',
+            },
+            {
+              text: 'Player number 1 win +3 points',
+              color: 'blue',
+            },
+            {
+              text: 'Player number 1 win +3 points',
+              color: 'red',
+            },
+            {
+              text: 'Player number 1 win +3 points',
+              color: 'red',
+            },
+            {
+              text: 'Player number 1 win +3 points',
+              color: 'red',
+            },
+            {
+              text: 'Player number 1 win +3 points',
+              color: 'red',
+            },
+            {
+              text: 'Player number 1 win +3 points',
+              color: 'red',
+            },
+            {
+              text: 'Player number 1 win +3 points',
+              color: 'red',
+            },
+            {
+              text: 'Player number 1 win +3 points',
+              color: 'red',
+            },
+            {
+              text: 'Player number 1 win +3 points',
+              color: 'red',
+            },
+
+            {
+              text: 'Player number 1 win +3 points',
+              color: 'red',
+            },
+          ]} />
         </IonRow>
         <IonRow>
           <IonCol>ion-col</IonCol>

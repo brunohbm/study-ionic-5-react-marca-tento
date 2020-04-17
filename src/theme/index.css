@@ -65,3 +65,71 @@ ion-col {
     text-align: center;
     padding: 0px;
 }
+
+.scoreboards .buttons {
+    padding-top: 13px;
+}
+
+.scoreboards .buttons .button-text {
+    font-size: 20px;
+    font-weight: 400;
+    font-family: 'Maitree'; 
+}
+
+.historic-wrapper {
+    background-color: #658BC9;
+    border-radius: var(--default-border-radius);
+    margin: calc(var(--default-height-padding) / 2) var(--border-width-padding);
+}
+
+.historic-wrapper .header {    
+    padding: var(--scoreboard-space);
+    border-bottom: 1px solid white;
+}
+
+.historic-wrapper .header .historic-title {
+    border-radius: var(--default-border-radius);
+    background-color: var(--ion-background-color);
+    box-shadow: var(--default-blur);
+    font-size: 17px;
+    font-weight: 800;    
+    line-height: 29px;
+    font-family: 'Maitree'; 
+}
+
+.historic-wrapper .body {
+    min-height: 250px;
+    max-height: 250px;
+    overflow-y: scroll;    
+    border-bottom-left-radius: var(--default-border-radius);
+    border-bottom-right-radius: var(--default-border-radius);
+}
+
+.body::-webkit-scrollbar {
+    background: transparent;
+    width: 0px;
+}
+
+ion-list {
+    padding: 0px !important;
+}
+
+.historic-wrapper .body .red-item {
+    background-color: #C96865;
+}
+
+.historic-wrapper .body .blue-item {
+
+    background-color: #658BC9;
+}
+
+.historic-wrapper .body .blue-item,
+.historic-wrapper .body .red-item {
+    height: 38px;
+    line-height: 38px;
+    font-size: 17px;
+    font-weight: 400;    
+    font-family: 'Maitree'; 
+    color: var(--ion-background-color);
+    border-top: 1px solid var(--ion-background-color);
+}
