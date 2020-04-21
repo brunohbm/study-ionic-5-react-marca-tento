@@ -58,7 +58,9 @@ body {
 }
 
 .scoreboards .main-score {
-    font-size: 40px;
+    font-size: 50px;
+    line-height: 50px;
+    padding-top: 13px;
     font-weight: 200;
     color: var(--ion-background-color);
 }
@@ -185,4 +187,9 @@ ion-list {
     text-transform: none;        
     font-family: 'Maitree';
     color: var(--ion-background-color);
+}
+
+.action-sheet-button-inner.sc-ion-action-sheet-md,
+.action-sheet-button-inner.sc-ion-action-sheet-ios {
+    font-family: 'Maitree';
 }
