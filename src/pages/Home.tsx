@@ -2,7 +2,6 @@ import {
   IonRow,
   IonCol,
   IonPage, 
-  IonItem,
   IonList,
   IonButton,
   IonContent, 
@@ -34,21 +33,21 @@ const ScoreBoard: React.FC = () => (
     <IonRow>
       <IonCol className="buttons">
         <IonRow>
-          <IonCol>
+          <IonCol size="4">
             <IonButton expand="block" color="light">
               <span className="button-text">
                 -1
               </span>
             </IonButton>
           </IonCol>
-          <IonCol>
+          <IonCol size="4">
             <IonButton expand="block" color="light">
               <span className="button-text">
                 +1
               </span>
             </IonButton>
           </IonCol>
-          <IonCol>
+          <IonCol size="4">
             <IonButton expand="block" color="light">
               <span className="button-text">
                 +3
@@ -158,15 +157,27 @@ const Home: React.FC = () => {
               text: 'Player number 1 win +3 points',
               color: 'red',
             },
-
             {
               text: 'Player number 1 win +3 points',
               color: 'red',
             },
           ]} />
         </IonRow>
-        <IonRow>
-          <IonCol>ion-col</IonCol>
+        <IonRow className="bottom-buttons">
+          <IonCol>
+          <IonButton color="danger" expand="block">
+              <span className="white-text-button">
+                Desfazer ação
+              </span>
+            </IonButton>
+          </IonCol>
+          <IonCol>
+          <IonButton expand="block">
+            <span className="white-text-button">
+              Novo jogo
+            </span>
+            </IonButton>
+          </IonCol>
         </IonRow>
       </IonContent>
     </IonPage>

@@ -1,6 +1,6 @@
 
 body {    
-    --default-height-padding: 4.5566vh;
+    --default-height-padding: 5vh;
     --center-width-padding: 8.1333vw;
     --border-width-padding: 5.3333vw;
     --scoreboard-space: 1.84vw;
@@ -8,10 +8,38 @@ body {
     --default-blur: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
 }
 
+@media only screen and (max-height: 850px) {
+    body {
+        --default-height-padding: 6vh;
+    }
+}
+
+@media only screen and (max-height: 750px) {
+    body {
+        --default-height-padding: 4vh;
+    }
+}
+
+@media only screen and (max-height: 670px) {
+    body {
+        --default-height-padding: 2.1vh;
+    }
+}
+
+@media only screen and (max-height: 600px) {
+    body {
+        --default-height-padding: 2vh;
+    }
+
+    .title {
+        display: none;
+    }
+}
+
 .title {
-    padding: var(--default-height-padding) var(--border-width-padding) calc(var(--default-height-padding) / 2) var(--border-width-padding);
+    padding: calc(var(--default-height-padding) / 2) var(--default-height-padding);
     font-family: 'Maitree';  
-    font-size: 33px;
+    font-size: 25px;
     font-weight: 800;
 }
 
@@ -24,19 +52,19 @@ body {
     border-radius: var(--default-border-radius);
     background-color: var(--ion-background-color);
     box-shadow: var(--default-blur);
-    font-size: 17px;
+    font-size: 15px;
     font-weight: 800;
     line-height: 29px;
 }
 
 .scoreboards .main-score {
-    font-size: 80px;
+    font-size: 40px;
     font-weight: 200;
     color: var(--ion-background-color);
 }
 
 .scoreboards .victories {
-    font-size: 17px;
+    font-size: 15px;
     font-weight: 300;
     color: var(--ion-background-color);
 }
@@ -71,7 +99,7 @@ ion-col {
 }
 
 .scoreboards .buttons .button-text {
-    font-size: 20px;
+    font-size: 15px;
     font-weight: 400;
     font-family: 'Maitree'; 
 }
@@ -91,7 +119,7 @@ ion-col {
     border-radius: var(--default-border-radius);
     background-color: var(--ion-background-color);
     box-shadow: var(--default-blur);
-    font-size: 17px;
+    font-size: 15px;
     font-weight: 800;    
     line-height: 29px;
     font-family: 'Maitree'; 
@@ -125,11 +153,36 @@ ion-list {
 
 .historic-wrapper .body .blue-item,
 .historic-wrapper .body .red-item {
-    height: 38px;
+    min-height: 38px;
     line-height: 38px;
-    font-size: 17px;
+    font-size: 15px;
     font-weight: 400;    
     font-family: 'Maitree'; 
     color: var(--ion-background-color);
+    padding: 0px 10px;
     border-top: 1px solid var(--ion-background-color);
+}
+
+.bottom-buttons {
+    padding: calc(var(--default-height-padding) / 2) var(--border-width-padding);
+}
+
+.bottom-buttons ion-button {
+    min-height: 40px;
+}
+
+.bottom-buttons ion-col:first-child ion-button {
+    margin-right: calc(var(--center-width-padding) / 2);
+}
+
+.bottom-buttons ion-col:last-child ion-button {
+    margin-left: calc(var(--center-width-padding) / 2);
+}
+
+.bottom-buttons .white-text-button {    
+    font-size: 15px;
+    font-weight: 400;    
+    text-transform: none;        
+    font-family: 'Maitree';
+    color: var(--ion-background-color);
 }
