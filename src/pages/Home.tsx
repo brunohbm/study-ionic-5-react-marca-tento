@@ -3,6 +3,7 @@ import {
   IonCol,
   IonPage, 
   IonList,
+  IonInput,
   IonButton,
   IonContent, 
   IonActionSheet,
@@ -66,15 +67,24 @@ let pointsHistory = [{
 
 const ScoreBoard: React.StatelessComponent<{
   points: number;
+  onBlur: Function;
   victoryText: string;
   victoriesAmount: number;
   initialInputValue: string;
   onChangePoint: Function;
+  onChangeValue: Function;
 }> = props => (
   <IonCol>
     <IonRow>
       <IonCol className="score-name">
-        {props.initialInputValue}
+        <IonInput 
+          value={props.initialInputValue} 
+          maxlength={25}
+          onIonBlur={() => { props.onBlur(); }}
+          onIonChange={e => { 
+            props.onChangeValue(e.detail.value); 
+          }}
+        />
       </IonCol>
     </IonRow>
     <IonRow>
@@ -165,6 +175,9 @@ const Home: React.FC = () => {
   const [showActionSheet, setShowActionSheet] = useState(false);
   const [history, setHistory] = useState([{ text: 'welcome', color: 'red', player: '' }]);
   const [lenguageActive, setLenguageActive] = useState(localStorage.getItem('lenguage') || navigator.language);
+
+  const formatValue = (value: string) => value.replace('  ', ' ')
+        .substring(0,1).toUpperCase().concat(value.substring(1));
   
   useEffect(() => {
     saveLanguageOnStorage(lenguageActive);
@@ -266,22 +279,26 @@ const Home: React.FC = () => {
           <IonCol size="6">
             <IonRow className="blue-wrapper">
                 <ScoreBoard 
+                  victoryText={texts.wins}                  
                   points={playesData.blue.points}
-                  victoryText={texts.wins}
                   victoriesAmount={playesData.blue.wins}
-                  initialInputValue={`${texts.player} 1`}
+                  initialInputValue={names.blue === 'player' ? `${texts.player} 1` : names.blue}
+                  onBlur={() => { if(!names.blue) { setNames({ blue: 'player', red: names.red }); } }}
                   onChangePoint={(amount: number, action: string) => { executeAction(amount, action, 'blue'); }}
+                  onChangeValue={(newName: string) => {  setNames({ blue: formatValue(newName), red: names.red }); }}
                 />
             </IonRow>
           </IonCol>
           <IonCol size="6">
               <IonRow className="red-wrapper">
                 <ScoreBoard 
-                  points={playesData.red.points}
                   victoryText={texts.wins}
+                  points={playesData.red.points}
                   victoriesAmount={playesData.red.wins}
-                  initialInputValue={`${texts.player} 2`}
+                  initialInputValue={names.red === 'player' ? `${texts.player} 2` : names.red}
+                  onBlur={() => { if(!names.red) { setNames({ red: 'player', blue: names.blue }); } }}
                   onChangePoint={(amount: number, action: string) => { executeAction(amount, action, 'red'); }}
+                  onChangeValue={(newName: string) => {  setNames({ blue: names.blue, red: formatValue(newName) }); }}
                 />
               </IonRow>
           </IonCol>

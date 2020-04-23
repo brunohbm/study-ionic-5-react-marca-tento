@@ -57,6 +57,11 @@ body {
     line-height: 29px;
 }
 
+.score-name ion-input {
+    height: 29px;
+    font-family: 'Maitree';  
+}
+
 .scoreboards .main-score {
     font-size: 50px;
     line-height: 50px;
