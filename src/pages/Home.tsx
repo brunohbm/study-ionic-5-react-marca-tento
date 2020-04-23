@@ -66,11 +66,12 @@ let pointsHistory = [{
 }];
 
 const ScoreBoard: React.StatelessComponent<{
+  value: string;
   points: number;
   onBlur: Function;
   victoryText: string;
+  placeholder: string;
   victoriesAmount: number;
-  initialInputValue: string;
   onChangePoint: Function;
   onChangeValue: Function;
 }> = props => (
@@ -78,12 +79,11 @@ const ScoreBoard: React.StatelessComponent<{
     <IonRow>
       <IonCol className="score-name">
         <IonInput 
-          value={props.initialInputValue} 
+          placeholder={props.placeholder} 
+          value={props.value}
           maxlength={25}
           onIonBlur={() => { props.onBlur(); }}
-          onIonChange={e => { 
-            props.onChangeValue(e.detail.value); 
-          }}
+          onIonChange={e => { props.onChangeValue(e.detail.value); }}
         />
       </IonCol>
     </IonRow>
@@ -176,8 +176,8 @@ const Home: React.FC = () => {
   const [history, setHistory] = useState([{ text: 'welcome', color: 'red', player: '' }]);
   const [lenguageActive, setLenguageActive] = useState(localStorage.getItem('lenguage') || navigator.language);
 
-  const formatValue = (value: string) => value.replace('  ', ' ')
-        .substring(0,1).toUpperCase().concat(value.substring(1));
+  const formatValue = (value: string) => value
+        .substring(0,1).toUpperCase().concat(value.substring(1)).replace('  ', ' ');
   
   useEffect(() => {
     saveLanguageOnStorage(lenguageActive);
@@ -252,6 +252,16 @@ const Home: React.FC = () => {
         wins: 0,
       }
     });
+    pointsHistory = [{
+      blue: {
+        points: 0,
+        wins: 0,
+      },
+      red: {
+        points: 0,
+        wins: 0,
+      }
+    }];    
     setHistory([{ text: 'welcome', color: 'red', player: '' }]);
   }
 
@@ -281,11 +291,12 @@ const Home: React.FC = () => {
                 <ScoreBoard 
                   victoryText={texts.wins}                  
                   points={playesData.blue.points}
+                  placeholder={`${texts.player} 1` }
                   victoriesAmount={playesData.blue.wins}
-                  initialInputValue={names.blue === 'player' ? `${texts.player} 1` : names.blue}
-                  onBlur={() => { if(!names.blue) { setNames({ blue: 'player', red: names.red }); } }}
+                  value={names.blue === 'player' ? '' : names.blue}
+                  onBlur={() => { setNames({ blue: names.blue.trim() || 'player', red: names.red }); } }
                   onChangePoint={(amount: number, action: string) => { executeAction(amount, action, 'blue'); }}
-                  onChangeValue={(newName: string) => {  setNames({ blue: formatValue(newName), red: names.red }); }}
+                  onChangeValue={(newName: string) => {  setNames({ blue: formatValue(newName) || 'player', red: names.red }); }}
                 />
             </IonRow>
           </IonCol>
@@ -294,11 +305,12 @@ const Home: React.FC = () => {
                 <ScoreBoard 
                   victoryText={texts.wins}
                   points={playesData.red.points}
+                  placeholder={`${texts.player} 2`}
                   victoriesAmount={playesData.red.wins}
-                  initialInputValue={names.red === 'player' ? `${texts.player} 2` : names.red}
-                  onBlur={() => { if(!names.red) { setNames({ red: 'player', blue: names.blue }); } }}
+                  value={names.red === 'player' ? '' : names.red}
+                  onBlur={() => { setNames({ red: names.red.trim() || 'player', blue: names.blue }); } }
                   onChangePoint={(amount: number, action: string) => { executeAction(amount, action, 'red'); }}
-                  onChangeValue={(newName: string) => {  setNames({ blue: names.blue, red: formatValue(newName) }); }}
+                  onChangeValue={(newName: string) => {  setNames({ blue: names.blue, red: formatValue(newName) || 'player' }); }}
                 />
               </IonRow>
           </IonCol>
