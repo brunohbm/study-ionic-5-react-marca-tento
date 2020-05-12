@@ -1,5 +1,7 @@
 {
   "name": "marca-tento",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "react"
 }

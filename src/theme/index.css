@@ -38,19 +38,19 @@ body {
 
 .title {
     padding: calc(var(--default-height-padding) / 2) var(--default-height-padding);
-    font-family: 'Maitree';  
+    font-family: 'Maitree' !important;  
     font-size: 25px;
     font-weight: 800;
 }
 
 .scoreboards {
     padding: calc(var(--default-height-padding) / 2) var(--border-width-padding);
-    font-family: 'Maitree';  
+    font-family: 'Maitree' !important;  
 }
 
 .scoreboards .score-name {
     border-radius: var(--default-border-radius);
-    background-color: var(--ion-background-color);
+    background-color: #FDFDFD !important;
     box-shadow: var(--default-blur);
     font-size: 15px;
     font-weight: 800;
@@ -59,7 +59,7 @@ body {
 
 .score-name ion-input {
     height: 29px;
-    font-family: 'Maitree';  
+    font-family: 'Maitree' !important;  
 }
 
 .scoreboards .main-score {
@@ -67,13 +67,13 @@ body {
     line-height: 50px;
     padding-top: 13px;
     font-weight: 200;
-    color: var(--ion-background-color);
+    color: #FDFDFD !important;
 }
 
 .scoreboards .victories {
     font-size: 15px;
     font-weight: 300;
-    color: var(--ion-background-color);
+    color: #FDFDFD !important;
 }
 
 .scoreboards > ion-col:first-child {
@@ -106,9 +106,10 @@ ion-col {
 }
 
 .scoreboards .buttons .button-text {
-    font-size: 15px;
-    font-weight: 400;
-    font-family: 'Maitree'; 
+    font-size: 15px !important;
+    font-weight: 400 !important;
+    font-family: 'Maitree' !important; 
+    color: #707070 !important;
 }
 
 .historic-wrapper {
@@ -124,12 +125,13 @@ ion-col {
 
 .historic-wrapper .header .historic-title {
     border-radius: var(--default-border-radius);
-    background-color: var(--ion-background-color);
+    background-color: #FDFDFD !important;
     box-shadow: var(--default-blur);
     font-size: 15px;
     font-weight: 800;    
     line-height: 29px;
-    font-family: 'Maitree'; 
+    font-family: 'Maitree' !important; 
+    color: #707070 !important;
 }
 
 .historic-wrapper .body {
@@ -150,11 +152,12 @@ ion-list {
 }
 
 .historic-wrapper .body .red-item {
+    color: #FDFDFD !important;
     background-color: #C96865;
 }
 
 .historic-wrapper .body .blue-item {
-
+    color: #FDFDFD !important;
     background-color: #658BC9;
 }
 
@@ -164,10 +167,10 @@ ion-list {
     line-height: 38px;
     font-size: 15px;
     font-weight: 400;    
-    font-family: 'Maitree'; 
-    color: var(--ion-background-color);
+    font-family: 'Maitree' !important; 
+    color: #FDFDFD !important;
     padding: 0px 10px;
-    border-top: 1px solid var(--ion-background-color);
+    border-top: 1px solid #FDFDFD !important;
 }
 
 .bottom-buttons {
@@ -190,11 +193,22 @@ ion-list {
     font-size: 15px;
     font-weight: 400;    
     text-transform: none;        
-    font-family: 'Maitree';
-    color: var(--ion-background-color);
+    font-family: 'Maitree' !important;
+    color: #FDFDFD !important;
 }
 
 .action-sheet-button-inner.sc-ion-action-sheet-md,
 .action-sheet-button-inner.sc-ion-action-sheet-ios {
-    font-family: 'Maitree';
+    font-family: 'Maitree' !important;
+}
+
+.native-input {
+    background-color: #FDFDFD !important;
+    border-radius: var(--default-border-radius) !important;
+    color: #707070 !important;
+}
+
+.text {
+    font-family: 'Maitree' !important;
+    color: #707070 !important;
 }

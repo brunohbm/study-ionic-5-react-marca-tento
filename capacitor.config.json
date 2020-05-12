@@ -1,0 +1,8 @@
+{
+  "appId": "marca.tento",
+  "appName": "Marca Tento",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "build",
+  "cordova": {}
+}

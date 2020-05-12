@@ -9,6 +9,10 @@ import {
   IonActionSheet,
 } from '@ionic/react';
 import React, { useState, useEffect } from 'react';
+import { Plugins } from '@capacitor/core';
+
+import { AdOptions } from 'capacitor-admob';
+const { AdMob } = Plugins;
 
 interface historicItem {
   player: string;
@@ -159,6 +163,7 @@ const Historic: React.FunctionComponent<{
   );
 
 const Home: React.FC = () => {
+  const [actions, setActions] = useState(0);
   const [match, setMatch] = useState(1);
   const [texts, setTexts] = useState(portugueseTexts);
   const [names, setNames] = useState({ blue: 'player', red: 'player' });
@@ -175,10 +180,55 @@ const Home: React.FC = () => {
   const [showActionSheet, setShowActionSheet] = useState(false);
   const [history, setHistory] = useState([{ text: 'welcome', color: 'red', player: '' }]);
   const [lenguageActive, setLenguageActive] = useState(localStorage.getItem('lenguage') || navigator.language);
+  
+  useEffect(() => {
+    AdMob.initialize('KEY');
+  }, []);
+
+  const  showInterstitial = () => {
+    try {
+      AdMob.showInterstitial()
+      .then((value: any) => {
+        console.log('Deu show', value);  // true
+      },
+      (error: any) => {
+        console.error('Deu erro no show', error); // show error
+      }
+    );
+    } catch (error) {
+      console.error('Deu error no load', error); // show error
+    }
+  }
+
+  const loadInterstitial = () => {
+    try {
+      const options: AdOptions = {
+        adId: 'INTERTETIAL-KEY',
+        autoShow: false
+      }
+      AdMob.prepareInterstitial(options)
+          .then((value: any) => {
+            showInterstitial();
+          },
+          (error: any) => {
+            console.error('Deu error no load', error); // show error
+          }
+      );
+    } catch (error) {
+      console.error('Deu error no load', error); // show error
+    }
+  }
+
+  useEffect(() => {
+    if (actions >= 13) {
+      loadInterstitial();
+      setActions(0);
+    }
+  }, [actions]);
 
   const formatValue = (value: string) => value
         .substring(0,1).toUpperCase().concat(value.substring(1)).replace('  ', ' ');
-  
+
   useEffect(() => {
     saveLanguageOnStorage(lenguageActive);
     if(lenguageActive === 'pt-BR') {
@@ -230,6 +280,8 @@ const Home: React.FC = () => {
       setHistory(newHistory);
       setPlayersData(pl);
     }
+
+    setActions(actions + 1);
   }
 
   const changeLanguage = () => {
@@ -240,8 +292,9 @@ const Home: React.FC = () => {
     setLenguageActive('pt-BR'); 
   }
 
-  const restartGame = () => {
+  const restartGame = () => {    
     setMatch(1);
+    loadInterstitial();
     setPlayersData({
       blue: {
         points: 0,
@@ -273,13 +326,14 @@ const Home: React.FC = () => {
     setPlayersData(pointsHistory[pointsHistory.length - 2]);
     setHistory(history.slice(1, history.length));
     pointsHistory = pointsHistory.slice(0, pointsHistory.length - 1);
+    setActions(actions + 1);
   }
 
   return (
     <IonPage>      
       <IonContent>
         <IonRow className="title">
-          <IonCol>
+          <IonCol className="text">
             {texts.match}
             {': '}
             {match}
@@ -327,7 +381,7 @@ const Home: React.FC = () => {
               }
               return ({ ...item, text: `${text} ${txt[item.text]}` });
             })} 
-          />
+          />          
         </IonRow>
         <IonRow className="bottom-buttons">
           <IonCol>
@@ -359,8 +413,8 @@ const Home: React.FC = () => {
             onClick={undoAction}
             expand="block"
           >
-            <span className="white-text-button">
-              {texts.undoAction}
+            <span className="white-text-button blue">
+              {texts.undoAction}              
             </span>
             </IonButton>
           </IonCol>

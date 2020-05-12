@@ -1,0 +1,21 @@
+https://enappd.com/blog/implement-admob-in-ionic-react-capacitor-apps/135/
+
+Manifest file:
+
+----
+        <meta-data 
+            android:name="com.google.android.gms.ads.APPLICATION_ID" 
+            android:value="ca-app-pub-4367290917489987~7458956221" 
+        />
+----      
+
+Main activity file:
+
+----
+
+import app.xplatform.capacitor.plugins.AdMob;
+
+add(AdMob.class);  // Add AdMob as a Capacitor Plugin
+
+----
+
